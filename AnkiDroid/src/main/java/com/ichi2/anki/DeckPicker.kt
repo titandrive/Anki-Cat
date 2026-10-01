@@ -71,6 +71,7 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import anki.collection.OpChanges
 import anki.sync.SyncStatusResponse
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -746,6 +747,8 @@ open class DeckPicker :
     private fun setupPullToSync() {
         pullToSyncWrapper =
             deckPickerBinding.pullToSyncWrapper.apply {
+                setColorSchemeColors(MaterialColors.getColor(this@DeckPicker, R.attr.fab_normal, 0))
+                setProgressBackgroundColorSchemeColor(MaterialColors.getColor(this@DeckPicker, R.attr.colorSurface, 0))
                 setDistanceToTriggerSync(SWIPE_TO_SYNC_TRIGGER_DISTANCE)
                 setOnRefreshListener {
                     Timber.i("Pull to Sync: Syncing")

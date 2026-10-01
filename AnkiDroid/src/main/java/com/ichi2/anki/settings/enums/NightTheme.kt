@@ -11,4 +11,5 @@ enum class NightTheme(
 ) : Theme {
     BLACK(R.string.theme_black_value, R.style.Theme_Dark_Black),
     DARK(R.string.theme_dark_value, R.style.Theme_Dark),
+    CATPPUCCIN_MACCHIATO(R.string.theme_catppuccin_macchiato_value, R.style.Theme_Catppuccin_Macchiato),
 }

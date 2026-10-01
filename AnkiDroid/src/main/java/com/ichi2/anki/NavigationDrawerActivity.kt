@@ -327,6 +327,8 @@ abstract class NavigationDrawerActivity(
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 
+    private var preferencesBeforeSettings: Map<String, *>? = null
+
     private val preferencesLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val preferences = preferences
@@ -335,6 +337,13 @@ abstract class NavigationDrawerActivity(
                 REQUEST_PREFERENCES_UPDATE,
                 result.resultCode,
             )
+
+            val previousPreferences = preferencesBeforeSettings
+            preferencesBeforeSettings = null
+            if (previousPreferences != null && previousPreferences == preferences.all) {
+                // Returning from settings without changes needs no recreation.
+                return@registerForActivityResult
+            }
 
             // We trigger a notifications channel set-up since the user may have changed the locale set
             // from within the app, which should cause the notification channel names to be reloaded to
@@ -433,6 +442,7 @@ abstract class NavigationDrawerActivity(
      * Opens AnkiDroid's Settings Screen.
      */
     protected fun openSettings() {
+        preferencesBeforeSettings = preferences.all.toMap()
         preferencesLauncher.navigate(PreferencesDestination.Root)
     }
 
