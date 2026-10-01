@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 <!-- Official palette: https://github.com/catppuccin/palette -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <attr name="useThemePrimaryContainer" format="boolean" />
-    <color name="catppuccin_latte_rosewater">#dc8a78</color>
-    <color name="catppuccin_latte_flamingo">#dd7878</color>
-    <color name="catppuccin_latte_pink">#ea76cb</color>
     <color name="catppuccin_latte_mauve">#8839ef</color>
     <color name="catppuccin_latte_red">#d20f39</color>
-    <color name="catppuccin_latte_maroon">#e64553</color>
     <color name="catppuccin_latte_peach">#fe640b</color>
-    <color name="catppuccin_latte_yellow">#df8e1d</color>
     <color name="catppuccin_latte_green">#40a02b</color>
-    <color name="catppuccin_latte_teal">#179299</color>
-    <color name="catppuccin_latte_sky">#04a5e5</color>
-    <color name="catppuccin_latte_sapphire">#209fb5</color>
     <color name="catppuccin_latte_blue">#1e66f5</color>
     <color name="catppuccin_latte_lavender">#7287fd</color>
     <color name="catppuccin_latte_text">#4c4f69</color>
-    <color name="catppuccin_latte_subtext1">#5c5f77</color>
     <color name="catppuccin_latte_subtext0">#6c6f85</color>
-    <color name="catppuccin_latte_overlay2">#7c7f93</color>
-    <color name="catppuccin_latte_overlay1">#8c8fa1</color>
     <color name="catppuccin_latte_overlay0">#9ca0b0</color>
     <color name="catppuccin_latte_surface2">#acb0be</color>
     <color name="catppuccin_latte_surface1">#bcc0cc</color>
@@ -29,25 +18,14 @@
     <color name="catppuccin_latte_base">#eff1f5</color>
     <color name="catppuccin_latte_mantle">#e6e9ef</color>
     <color name="catppuccin_latte_crust">#dce0e8</color>
-    <color name="catppuccin_macchiato_rosewater">#f4dbd6</color>
-    <color name="catppuccin_macchiato_flamingo">#f0c6c6</color>
-    <color name="catppuccin_macchiato_pink">#f5bde6</color>
     <color name="catppuccin_macchiato_mauve">#c6a0f6</color>
     <color name="catppuccin_macchiato_red">#ed8796</color>
-    <color name="catppuccin_macchiato_maroon">#ee99a0</color>
     <color name="catppuccin_macchiato_peach">#f5a97f</color>
-    <color name="catppuccin_macchiato_yellow">#eed49f</color>
     <color name="catppuccin_macchiato_green">#a6da95</color>
-    <color name="catppuccin_macchiato_teal">#8bd5ca</color>
-    <color name="catppuccin_macchiato_sky">#91d7e3</color>
-    <color name="catppuccin_macchiato_sapphire">#7dc4e4</color>
     <color name="catppuccin_macchiato_blue">#8aadf4</color>
     <color name="catppuccin_macchiato_lavender">#b7bdf8</color>
     <color name="catppuccin_macchiato_text">#cad3f5</color>
-    <color name="catppuccin_macchiato_subtext1">#b8c0e0</color>
     <color name="catppuccin_macchiato_subtext0">#a5adcb</color>
-    <color name="catppuccin_macchiato_overlay2">#939ab7</color>
-    <color name="catppuccin_macchiato_overlay1">#8087a2</color>
     <color name="catppuccin_macchiato_overlay0">#6e738d</color>
     <color name="catppuccin_macchiato_surface2">#5b6078</color>
     <color name="catppuccin_macchiato_surface1">#494d64</color>
@@ -174,7 +152,7 @@
         <item name="useThemePrimaryContainer">true</item>
         <item name="isLightTheme">true</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
         <item name="navDrawerItemColor">@color/catppuccin_drawer_text</item>
         <item name="navDrawerItemBackgroundColor">@drawable/catppuccin_latte_drawer_background</item>
         <item name="againButtonRef">@drawable/catppuccin_button_again</item>
@@ -298,7 +276,7 @@
         <item name="useThemePrimaryContainer">true</item>
         <item name="isLightTheme">false</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
         <item name="navDrawerItemColor">@color/catppuccin_drawer_text</item>
         <item name="navDrawerItemBackgroundColor">@drawable/catppuccin_macchiato_drawer_background</item>
         <item name="againButtonRef">@drawable/catppuccin_button_again</item>
