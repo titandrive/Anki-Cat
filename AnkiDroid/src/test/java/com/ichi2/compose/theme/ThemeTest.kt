@@ -118,4 +118,12 @@ class ThemeTest {
         assertEquals(0xFF181926.toInt(), macchiato.onPrimaryContainer.toArgb())
     }
 
+    @Test
+    fun `Catppuccin drawer backgrounds inflate without a theme`() {
+        for (drawable in listOf(R.drawable.catppuccin_latte_drawer_background, R.drawable.catppuccin_macchiato_drawer_background)) {
+            @Suppress("DEPRECATION")
+            val background = appContext.resources.getDrawable(drawable)
+            kotlin.test.assertNotNull(background)
+        }
+    }
 }

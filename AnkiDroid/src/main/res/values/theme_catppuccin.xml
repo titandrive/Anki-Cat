@@ -73,7 +73,7 @@
         <item name="easyTextColor">@color/catppuccin_latte_blue</item>
         <item name="easyIconColor">@color/catppuccin_latte_blue</item>
         <item name="clozeColor">@color/catppuccin_latte_blue</item>
-        <item name="fab_normal">@color/catppuccin_latte_blue</item>
+        <item name="fab_normal">@color/catppuccin_latte_mauve</item>
         <item name="progressDialogButtonTextColor">@color/catppuccin_latte_blue</item>
         <item name="snackbarButtonTextColor">@color/catppuccin_latte_blue</item>
         <item name="colorPrimaryDark">@color/catppuccin_latte_crust</item>
@@ -147,9 +147,10 @@
         <item name="reminderTroubleshootingWarning">@color/catppuccin_latte_peach</item>
         <item name="buttonRippleColor">@color/catppuccin_latte_lavender</item>
         <item name="editTextHighlightColor">@color/catppuccin_latte_lavender</item>
-        <item name="fab_pressed">@color/catppuccin_latte_lavender</item>
-        <item name="showAnswerButtonBackground">@color/catppuccin_latte_blue</item>
-        <item name="showAnswerColor">@color/catppuccin_latte_blue</item>
+        <item name="fab_pressed">@color/catppuccin_latte_mauve</item>
+        <item name="showAnswerButtonRef">@drawable/catppuccin_button_show_answer</item>
+        <item name="showAnswerButtonBackground">@color/catppuccin_latte_mauve</item>
+        <item name="showAnswerColor">@color/catppuccin_latte_mauve</item>
         <item name="easyButtonBackground">@color/catppuccin_latte_blue</item>
         <item name="againButtonBackground">@color/catppuccin_latte_red</item>
         <item name="hardButtonBackground">@color/catppuccin_latte_peach</item>
@@ -168,12 +169,14 @@
         <item name="selectedColor">@color/catppuccin_latte_surface2</item>
         <item name="duplicateColor">@color/catppuccin_latte_surface0</item>
         <item name="colorErrorContainer">@color/catppuccin_latte_surface0</item>
+        <item name="cardViewStyle">@style/CardView.Catppuccin</item>
+        <item name="android:windowAnimationStyle">@null</item>
         <item name="useThemePrimaryContainer">true</item>
         <item name="isLightTheme">true</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
         <item name="navDrawerItemColor">@color/catppuccin_drawer_text</item>
-        <item name="navDrawerItemBackgroundColor">@drawable/catppuccin_drawer_background</item>
+        <item name="navDrawerItemBackgroundColor">@drawable/catppuccin_latte_drawer_background</item>
         <item name="againButtonRef">@drawable/catppuccin_button_again</item>
         <item name="hardButtonRef">@drawable/catppuccin_button_hard</item>
         <item name="goodButtonRef">@drawable/catppuccin_button_good</item>
@@ -194,7 +197,7 @@
         <item name="easyTextColor">@color/catppuccin_macchiato_blue</item>
         <item name="easyIconColor">@color/catppuccin_macchiato_blue</item>
         <item name="clozeColor">@color/catppuccin_macchiato_blue</item>
-        <item name="fab_normal">@color/catppuccin_macchiato_blue</item>
+        <item name="fab_normal">@color/catppuccin_macchiato_mauve</item>
         <item name="progressDialogButtonTextColor">@color/catppuccin_macchiato_blue</item>
         <item name="snackbarButtonTextColor">@color/catppuccin_macchiato_blue</item>
         <item name="colorPrimaryDark">@color/catppuccin_macchiato_crust</item>
@@ -268,9 +271,10 @@
         <item name="reminderTroubleshootingWarning">@color/catppuccin_macchiato_peach</item>
         <item name="buttonRippleColor">@color/catppuccin_macchiato_lavender</item>
         <item name="editTextHighlightColor">@color/catppuccin_macchiato_lavender</item>
-        <item name="fab_pressed">@color/catppuccin_macchiato_lavender</item>
-        <item name="showAnswerButtonBackground">@color/catppuccin_macchiato_blue</item>
-        <item name="showAnswerColor">@color/catppuccin_macchiato_blue</item>
+        <item name="fab_pressed">@color/catppuccin_macchiato_mauve</item>
+        <item name="showAnswerButtonRef">@drawable/catppuccin_button_show_answer</item>
+        <item name="showAnswerButtonBackground">@color/catppuccin_macchiato_mauve</item>
+        <item name="showAnswerColor">@color/catppuccin_macchiato_mauve</item>
         <item name="easyButtonBackground">@color/catppuccin_macchiato_blue</item>
         <item name="againButtonBackground">@color/catppuccin_macchiato_red</item>
         <item name="hardButtonBackground">@color/catppuccin_macchiato_peach</item>
@@ -289,15 +293,20 @@
         <item name="selectedColor">@color/catppuccin_macchiato_surface2</item>
         <item name="duplicateColor">@color/catppuccin_macchiato_surface0</item>
         <item name="colorErrorContainer">@color/catppuccin_macchiato_surface0</item>
+        <item name="cardViewStyle">@style/CardView.Catppuccin</item>
+        <item name="android:windowAnimationStyle">@null</item>
         <item name="useThemePrimaryContainer">true</item>
         <item name="isLightTheme">false</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
         <item name="navDrawerItemColor">@color/catppuccin_drawer_text</item>
-        <item name="navDrawerItemBackgroundColor">@drawable/catppuccin_drawer_background</item>
+        <item name="navDrawerItemBackgroundColor">@drawable/catppuccin_macchiato_drawer_background</item>
         <item name="againButtonRef">@drawable/catppuccin_button_again</item>
         <item name="hardButtonRef">@drawable/catppuccin_button_hard</item>
         <item name="goodButtonRef">@drawable/catppuccin_button_good</item>
         <item name="easyButtonRef">@drawable/catppuccin_button_easy</item>
+    </style>
+    <style name="CardView.Catppuccin" parent="CardView">
+        <item name="cardBackgroundColor">?attr/colorSurfaceContainer</item>
     </style>
 </resources>

@@ -10,8 +10,11 @@ import android.webkit.WebView
 import androidx.core.view.isVisible
 import com.google.android.material.color.MaterialColors
 import com.ichi2.anki.OnPageFinishedCallback
+import com.ichi2.anki.settings.enums.DayTheme
+import com.ichi2.anki.settings.enums.NightTheme
 import com.ichi2.anki.workarounds.SafeWebViewClient
 import com.ichi2.anki.workarounds.SafeWebViewLayout
+import com.ichi2.themes.Themes
 import com.ichi2.utils.AssetHelper.guessMimeType
 import com.ichi2.utils.toRGBHex
 import timber.log.Timber
@@ -46,7 +49,26 @@ open class PageWebViewClient : SafeWebViewClient() {
         try {
             val mimeType = guessMimeType(assetPath)
             val inputStream = view.context.assets.open(assetPath)
-            val response = WebResourceResponse(mimeType, null, inputStream)
+            // Include the palette before parsing the page to avoid a default-color flash.
+            val paletteAsset =
+                when (Themes.currentTheme) {
+                    DayTheme.CATPPUCCIN_LATTE -> "catppuccin_latte.css"
+                    NightTheme.CATPPUCCIN_MACCHIATO -> "catppuccin_macchiato.css"
+                    else -> null
+                }
+            val themedStream =
+                if (mimeType == "text/html" && paletteAsset != null) {
+                    val html = inputStream.bufferedReader().use { it.readText() }
+                    val css =
+                        view.context.assets
+                            .open(paletteAsset)
+                            .bufferedReader()
+                            .use { it.readText() }
+                    ByteArrayInputStream(html.replace("</head>", "<style>$css</style></head>").toByteArray(Charsets.UTF_8))
+                } else {
+                    inputStream
+                }
+            val response = WebResourceResponse(mimeType, "UTF-8", themedStream)
             if ("immutable" in path) {
                 response.responseHeaders = mapOf("Cache-Control" to "max-age=31536000")
             }

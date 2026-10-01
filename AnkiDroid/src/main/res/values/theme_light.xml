@@ -85,6 +85,7 @@
         <item name="goodIconColor">?goodTextColor</item>
         <item name="easyIconColor">?easyTextColor</item>
         <!-- Study Screen button drawables -->
+        <item name="showAnswerButtonRef">?attr/hardButtonRef</item>
         <item name="showAnswerButtonBackground">@color/material_blue_700</item>
         <item name="showAnswerColor">@color/material_blue_grey_700</item>
         <item name="againButtonRef">@drawable/footer_button_again</item>

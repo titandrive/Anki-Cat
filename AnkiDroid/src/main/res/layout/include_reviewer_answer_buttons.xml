@@ -158,7 +158,7 @@
             android:layout_height="?minTouchTargetSize"
             android:orientation="vertical"
             android:focusable="true"
-            android:background="?attr/hardButtonRef"
+            android:background="?attr/showAnswerButtonRef"
             tools:visibility="visible"
             android:theme="@style/HardButton">
 
