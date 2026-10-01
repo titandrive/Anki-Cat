@@ -113,6 +113,8 @@
         <item name="dialogBackground">@color/catppuccin_latte_mantle</item>
         <item name="checkMediaListBackground">@color/catppuccin_latte_mantle</item>
         <item name="snackbarBackgroundTintColor">@color/catppuccin_latte_mantle</item>
+        <item name="snackbarTextViewStyle">@style/SnackbarText.Catppuccin</item>
+        <item name="navDrawerImage">@drawable/nav_drawer_catppuccin_latte</item>
         <item name="colorSurfaceContainerLowest">@color/catppuccin_latte_crust</item>
         <item name="android:statusBarColor">@color/catppuccin_latte_crust</item>
         <item name="reviewCountColor">@color/catppuccin_latte_green</item>
@@ -237,6 +239,8 @@
         <item name="dialogBackground">@color/catppuccin_macchiato_mantle</item>
         <item name="checkMediaListBackground">@color/catppuccin_macchiato_mantle</item>
         <item name="snackbarBackgroundTintColor">@color/catppuccin_macchiato_mantle</item>
+        <item name="snackbarTextViewStyle">@style/SnackbarText.Catppuccin</item>
+        <item name="navDrawerImage">@drawable/nav_drawer_catppuccin_macchiato</item>
         <item name="colorSurfaceContainerLowest">@color/catppuccin_macchiato_crust</item>
         <item name="android:statusBarColor">@color/catppuccin_macchiato_crust</item>
         <item name="reviewCountColor">@color/catppuccin_macchiato_green</item>
@@ -286,5 +290,8 @@
     </style>
     <style name="CardView.Catppuccin" parent="CardView">
         <item name="cardBackgroundColor">?attr/colorSurfaceContainer</item>
+    </style>
+    <style name="SnackbarText.Catppuccin" parent="Widget.MaterialComponents.Snackbar.TextView">
+        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 </resources>
