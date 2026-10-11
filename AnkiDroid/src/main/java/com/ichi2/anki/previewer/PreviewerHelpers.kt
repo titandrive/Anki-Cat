@@ -44,6 +44,13 @@ fun stdHtml(
     val fontScale = context.resources.configuration.fontScale
     val fontScaleCss = if (fontScale != 1f) "html { zoom: $fontScale }" else ""
 
+    val cardFonts =
+        com.ichi2.anki.reviewer
+            .ReviewerCustomFonts(context)
+    val fontCss =
+        com.ichi2.anki.appearance.AppFonts
+            .cardCss(context)
+
     val jsAssets: List<String> =
         listOf(
             "backend/js/jquery.min.js",
@@ -69,11 +76,13 @@ fun stdHtml(
                 .night-mode button { --canvas: #606060; --fg: #eee; }
                 $colors
                 $fontScaleCss
+                $fontCss
             </style>
         </head>
         <body class="${bodyClass()}">
             <div id="qa" dir="auto"></div>
             $jsTxt
+            ${cardFonts.fontScript}
         </body>
         </html>
         """.trimIndent()

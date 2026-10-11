@@ -56,6 +56,21 @@
             app:useSimpleSummaryProvider="true"
             />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/ankicat_font_title">
+        <ListPreference
+            android:key="@string/pref_ankicat_font_key" android:title="@string/ankicat_font_title"
+            android:defaultValue="default" android:entries="@array/ankicat_font_labels"
+            android:entryValues="@array/ankicat_font_values" />
+        <ListPreference
+            android:key="@string/pref_ankicat_font_size_key"
+            android:title="@string/menu_font_size"
+            android:defaultValue="100"
+            android:entries="@array/ankicat_font_size_labels"
+            android:entryValues="@array/ankicat_font_size_values"
+            app:useSimpleSummaryProvider="true" />
+        <Preference android:key="@string/pref_ankicat_import_font_key" android:title="@string/ankicat_font_import"
+            android:summary="@string/ankicat_font_summary" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/background_image_title" >
         <Preference
             android:defaultValue="false"

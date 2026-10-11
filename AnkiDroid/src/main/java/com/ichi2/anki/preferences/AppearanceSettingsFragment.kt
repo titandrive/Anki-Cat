@@ -7,6 +7,7 @@ import android.os.Build
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.content.edit
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.SwitchPreferenceCompat
@@ -14,6 +15,8 @@ import com.ichi2.anki.CollectionManager
 import com.ichi2.anki.CollectionManager.TR
 import com.ichi2.anki.CommonString
 import com.ichi2.anki.R
+import com.ichi2.anki.appearance.AppFonts
+import com.ichi2.anki.common.preferences.sharedPrefs
 import com.ichi2.anki.common.utils.android.showThemedToast
 import com.ichi2.anki.common.utils.android.systemIsInNightMode
 import com.ichi2.anki.deckpicker.BackgroundImage
@@ -30,6 +33,8 @@ import com.ichi2.utils.negativeButton
 import com.ichi2.utils.positiveButton
 import com.ichi2.utils.show
 import com.ichi2.utils.title
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class AppearanceSettingsFragment : SettingsFragment() {
@@ -94,9 +99,58 @@ class AppearanceSettingsFragment : SettingsFragment() {
             }
         }
 
+        setupFontPreferences()
         setupThemePreferences()
         setupNewStudyScreenSettings()
     }
+
+    private fun setupFontPreferences() {
+        requirePreference<ListPreference>(AppFonts.SIZE_KEY).onPreferenceChangeListener =
+            Preference.OnPreferenceChangeListener { _, value ->
+                requireContext().sharedPrefs().edit { putString(AppFonts.SIZE_KEY, value as String) }
+                ActivityCompat.recreate(requireActivity())
+                false
+            }
+        val preference = requirePreference<ListPreference>(AppFonts.KEY)
+        preference.summaryProvider =
+            Preference.SummaryProvider<ListPreference> {
+                if (it.value == "custom") {
+                    requireContext().sharedPrefs().getString(AppFonts.CUSTOM_NAME, getString(R.string.ankicat_font_custom))
+                } else {
+                    it.entry ?: getString(R.string.ankicat_font_default)
+                }
+            }
+        preference.onPreferenceChangeListener =
+            Preference.OnPreferenceChangeListener { _, value ->
+                if (value == "custom") {
+                    fontResultLauncher.launch(arrayOf("*/*"))
+                } else {
+                    requireContext().sharedPrefs().edit { putString(AppFonts.KEY, value as String) }
+                    ActivityCompat.recreate(requireActivity())
+                }
+                false
+            }
+        requirePreference<Preference>("ankicat_import_font").setOnPreferenceClickListener {
+            fontResultLauncher.launch(arrayOf("*/*"))
+            true
+        }
+    }
+
+    private val fontResultLauncher =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            if (uri != null) {
+                val context = requireContext().applicationContext
+                launchCatchingTask {
+                    try {
+                        withContext(Dispatchers.IO) { AppFonts.importFont(context, uri) }
+                        activity?.let { ActivityCompat.recreate(it) }
+                    } catch (exception: Exception) {
+                        Timber.w(exception, "Could not import AnkiCat font")
+                        if (isAdded) showSnackbar(getString(R.string.ankicat_font_error))
+                    }
+                }
+            }
+        }
 
     private fun updateRemoveBackgroundVisibility() {
         removeBackgroundPref?.isVisible = BackgroundImage.shouldBeShown(requireContext())

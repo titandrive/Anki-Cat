@@ -60,12 +60,13 @@ class AndroidCardRenderContext(
 
         val style = cardAppearance.style
         val script =
-            when (requiresMathjax) {
-                false -> ""
-                true ->
-                    """        <script src="file:///android_asset/backend/js/mathjax.js"></script>
+            cardAppearance.fontScript +
+                when (requiresMathjax) {
+                    false -> ""
+                    true ->
+                        """        <script src="file:///android_asset/backend/js/mathjax.js"></script>
         <script src="file:///android_asset/backend/js/vendor/mathjax/tex-chtml-full.js"></script>"""
-            }
+                }
         val cardClass = cardAppearance.getCardClass(ord + 1) + if (requiresMathjax) " mathjax-needs-to-render" else ""
 
         Timber.v("content card = \n %s", content)
@@ -118,7 +119,7 @@ class AndroidCardRenderContext(
             typeAnswer: TypeAnswer,
         ): AndroidCardRenderContext {
             val preferences = context.sharedPrefs()
-            val cardAppearance = CardAppearance.create(ReviewerCustomFonts(), preferences, context.resources.configuration.fontScale)
+            val cardAppearance = CardAppearance.create(ReviewerCustomFonts(context), preferences, context.resources.configuration.fontScale)
             val cardHtmlTemplate = CardTemplate.load(context)
             val showAudioPlayButtons = !col.config.getBool(ConfigKey.Bool.HIDE_AUDIO_PLAY_BUTTONS)
             return AndroidCardRenderContext(

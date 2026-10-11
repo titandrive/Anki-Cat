@@ -16,14 +16,27 @@
 
 package com.ichi2.anki.reviewer
 
-class ReviewerCustomFonts {
+class ReviewerCustomFonts(
+    private val context: android.content.Context? = null,
+) {
     /**
      * The CSS used to set the theme font.
      */
     private val customStyle =
         "BODY {font-family: 'OpenSans';font-weight: normal;font-style: normal;font-stretch: normal;}"
 
+    val fontScript: String
+        get() =
+            if (context != null && com.ichi2.anki.appearance.AppFonts
+                    .typeface(context) != null
+            ) {
+                "<script src=\"file:///android_asset/scripts/ankicat-font.js\"></script>"
+            } else {
+                ""
+            }
+
     fun updateCssStyle(cssStyle: StringBuilder) {
-        cssStyle.append(customStyle)
+        val fontCss = context?.let(com.ichi2.anki.appearance.AppFonts::cardCss).orEmpty()
+        cssStyle.append(fontCss.ifEmpty { customStyle })
     }
 }

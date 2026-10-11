@@ -20,6 +20,7 @@ private const val MATHJAX_PATH_PREFIX = "/_anki/js/vendor/mathjax/"
 class ViewerResourceHandler(
     context: Context,
 ) {
+    private val fontContext = context.applicationContext
     private val assetManager = context.assets
     private val mediaDir = CollectionHelper.getMediaDirectory(context)
 
@@ -35,6 +36,12 @@ class ViewerResourceHandler(
         }
 
         try {
+            if (path == com.ichi2.anki.appearance.AppFonts.CARD_FONT_PATH) {
+                val font =
+                    com.ichi2.anki.appearance.AppFonts
+                        .openCardFont(fontContext) ?: return null
+                return WebResourceResponse("font/ttf", null, font)
+            }
             if (path == "/_anki/js/mathjax.js") {
                 return WebResourceResponse(guessMimeType(path), null, assetManager.open("backend/js/mathjax.js"))
             }

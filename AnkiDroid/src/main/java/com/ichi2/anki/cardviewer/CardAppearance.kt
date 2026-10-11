@@ -63,6 +63,8 @@ class CardAppearance(
         return cardClass.toString()
     }
 
+    val fontScript: String get() = customFonts.fontScript
+
     val style: String
         get() {
             val style = StringBuilder()

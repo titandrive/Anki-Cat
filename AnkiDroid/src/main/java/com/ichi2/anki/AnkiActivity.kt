@@ -142,6 +142,20 @@ open class AnkiActivity(
             }
         }
 
+    private var fontRoot: View? = null
+    private var fontSignature: String? = null
+    private val fontLayoutListener =
+        android.view.ViewTreeObserver.OnGlobalLayoutListener {
+            fontRoot?.let(com.ichi2.anki.appearance.AppFonts::applyTo)
+        }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(
+            com.ichi2.anki.appearance.AppFonts
+                .scaledContext(newBase),
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // The hardware buttons should control the music volume
         volumeControlStream = AudioManager.STREAM_MUSIC
@@ -196,6 +210,8 @@ open class AnkiActivity(
     }
 
     override fun onDestroy() {
+        fontRoot?.viewTreeObserver?.takeIf { it.isAlive }?.removeOnGlobalLayoutListener(fontLayoutListener)
+        fontRoot = null
         super.onDestroy()
         broadcastReceiver?.let { unregisterReceiver(it) }
     }
@@ -206,6 +222,21 @@ open class AnkiActivity(
 
     override fun onResume() {
         super.onResume()
+        val signature =
+            com.ichi2.anki.appearance.AppFonts
+                .signature(this)
+        if (fontSignature != null && fontSignature != signature) {
+            recreate()
+            return
+        }
+        fontSignature = signature
+        fontRoot?.viewTreeObserver?.takeIf { it.isAlive }?.removeOnGlobalLayoutListener(fontLayoutListener)
+        fontRoot = window.decorView
+        fontRoot?.let {
+            com.ichi2.anki.appearance.AppFonts
+                .applyTo(it)
+            it.viewTreeObserver.addOnGlobalLayoutListener(fontLayoutListener)
+        }
         Analytics.sendAnalyticsScreenView(analyticsScreenName)
         (getSystemService(NOTIFICATION_SERVICE) as NotificationManager).cancel(
             SIMPLE_NOTIFICATION_ID,

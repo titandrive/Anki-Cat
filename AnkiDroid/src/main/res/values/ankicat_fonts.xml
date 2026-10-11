@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<resources>
+    <string name="pref_ankicat_font_key" translatable="false">ankicat_font</string>
+    <string name="pref_ankicat_import_font_key" translatable="false">ankicat_import_font</string>
+    <string name="ankicat_font_title">Font</string>
+    <string name="ankicat_font_default">App default</string>
+    <string name="ankicat_font_jetbrains">JetBrains Mono</string>
+    <string name="ankicat_font_custom">Custom TTF…</string>
+    <string name="ankicat_font_import">Choose a TTF file</string>
+    <string name="ankicat_font_error">Could not import font. Choose a valid .ttf file smaller than 20 MiB.</string>
+    <string name="ankicat_font_summary">Selected fonts override all card fonts. App default restores template styling.</string>
+    <string-array name="ankicat_font_labels">
+        <item>@string/ankicat_font_default</item><item>@string/ankicat_font_jetbrains</item><item>@string/ankicat_font_custom</item>
+    </string-array>
+    <string-array name="ankicat_font_values"><item>default</item><item>jetbrains</item><item>custom</item></string-array>
+    <item name="ankicat_original_typeface" type="id" />
+    <string name="pref_ankicat_font_size_key" translatable="false">ankicat_font_size</string>
+    <string name="ankicat_font_size_very_small" formatted="false">Very small (70%)</string>
+    <string name="ankicat_font_size_smaller" formatted="false">Smaller (80%)</string>
+    <string name="ankicat_font_size_small" formatted="false">Small (90%)</string>
+    <string name="ankicat_font_size_default" formatted="false">Default (100%)</string>
+    <string name="ankicat_font_size_larger" formatted="false">Larger (110%)</string>
+    <string name="ankicat_font_size_large" formatted="false">Large (120%)</string>
+    <string name="ankicat_font_size_very_large" formatted="false">Very large (130%)</string>
+    <string name="ankicat_font_size_extra_large" formatted="false">Extra large (150%)</string>
+    <string-array name="ankicat_font_size_labels">
+        <item>@string/ankicat_font_size_very_small</item>
+        <item>@string/ankicat_font_size_smaller</item>
+        <item>@string/ankicat_font_size_small</item>
+        <item>@string/ankicat_font_size_default</item>
+        <item>@string/ankicat_font_size_larger</item>
+        <item>@string/ankicat_font_size_large</item>
+        <item>@string/ankicat_font_size_very_large</item>
+        <item>@string/ankicat_font_size_extra_large</item>
+    </string-array>
+    <string-array name="ankicat_font_size_values">
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+        <item>110</item>
+        <item>120</item>
+        <item>130</item>
+        <item>150</item>
+    </string-array>
+</resources>
