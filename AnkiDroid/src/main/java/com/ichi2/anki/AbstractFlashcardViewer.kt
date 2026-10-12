@@ -146,6 +146,8 @@ import com.ichi2.anki.security.AppPermissions
 import com.ichi2.anki.servicelayer.LanguageHintService.applyLanguageHint
 import com.ichi2.anki.servicelayer.NoteService.isMarked
 import com.ichi2.anki.settings.Prefs
+import com.ichi2.anki.settings.enums.DayTheme
+import com.ichi2.anki.settings.enums.NightTheme
 import com.ichi2.anki.snackbar.BaseSnackbarBuilderProvider
 import com.ichi2.anki.snackbar.SnackbarBuilder
 import com.ichi2.anki.snackbar.showSnackbar
@@ -979,7 +981,11 @@ abstract class AbstractFlashcardViewer :
                 }
             }
         }
-        if (animationEnabled()) {
+        if (Themes.currentTheme == DayTheme.CATPPUCCIN_LATTE || Themes.currentTheme == NightTheme.CATPPUCCIN_MACCHIATO) {
+            // The classic reviewer normally replaces Show Answer with the Hard
+            // button ripple. Keep Catppuccin's dedicated mauve background.
+            flipCardLayout?.setBackgroundResource(getResFromAttr(this, R.attr.showAnswerButtonRef))
+        } else if (animationEnabled()) {
             flipCardLayout?.setBackgroundResource(getResFromAttr(this, R.attr.hardButtonRippleRef))
         }
         if (!buttonHeightSet && relativeButtonSize != 100) {

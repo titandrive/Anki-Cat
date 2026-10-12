@@ -6,3 +6,8 @@ version = 1
 path = "**.kt"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Contributors to the AnkiDroid project"
+
+[[annotations]]
+path = "AnkiDroid/src/main/assets/fonts/JetBrainsMono-Regular.ttf"
+SPDX-FileCopyrightText = "2020 The JetBrains Mono Project Authors"
+SPDX-License-Identifier = "OFL-1.1"

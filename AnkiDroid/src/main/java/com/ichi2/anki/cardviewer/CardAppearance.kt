@@ -55,8 +55,15 @@ class CardAppearance(
                 cardClass.append(" ankidroid_plain_mode")
             }
         }
+        when (currentTheme) {
+            DayTheme.CATPPUCCIN_LATTE -> cardClass.append(" ankidroid_catppuccin_latte")
+            NightTheme.CATPPUCCIN_MACCHIATO -> cardClass.append(" ankidroid_catppuccin_macchiato")
+            else -> Unit
+        }
         return cardClass.toString()
     }
+
+    val fontScript: String get() = customFonts.fontScript
 
     val style: String
         get() {

@@ -106,4 +106,24 @@ class ThemeTest {
         val scheme = context.toMaterial3ColorScheme()
         assertEquals(scheme.onPrimary.toArgb(), context.toAnkiDroidColors(scheme).onFab.toArgb())
     }
+
+    @Test
+    fun `Catppuccin themes bridge their surfaces and primary containers`() {
+        val latte = themed(R.style.Theme_Catppuccin_Latte).toMaterial3ColorScheme()
+        assertEquals(0xFFEFF1F5.toInt(), latte.surface.toArgb())
+        assertEquals(0xFF1E66F5.toInt(), latte.primaryContainer.toArgb())
+        val macchiato = themed(R.style.Theme_Catppuccin_Macchiato).toMaterial3ColorScheme()
+        assertEquals(0xFF24273A.toInt(), macchiato.surface.toArgb())
+        assertEquals(0xFF8AADF4.toInt(), macchiato.primaryContainer.toArgb())
+        assertEquals(0xFF181926.toInt(), macchiato.onPrimaryContainer.toArgb())
+    }
+
+    @Test
+    fun `Catppuccin drawer backgrounds inflate without a theme`() {
+        for (drawable in listOf(R.drawable.catppuccin_latte_drawer_background, R.drawable.catppuccin_macchiato_drawer_background)) {
+            @Suppress("DEPRECATION")
+            val background = appContext.resources.getDrawable(drawable)
+            kotlin.test.assertNotNull(background)
+        }
+    }
 }

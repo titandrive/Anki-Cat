@@ -37,12 +37,43 @@ import com.ichi2.anki.R
 fun AnkiDroidTheme(content: @Composable () -> Unit) {
     val context = LocalContext.current
     val colorScheme = remember(context) { context.toMaterial3ColorScheme() }
+    val appFont =
+        remember(context) {
+            com.ichi2.anki.appearance.AppFonts
+                .typeface(context)
+        }
+    val baseTypography = androidx.compose.material3.Typography()
+    val typography =
+        if (appFont == null) {
+            baseTypography
+        } else {
+            val family =
+                androidx.compose.ui.text.font
+                    .FontFamily(appFont)
+            baseTypography.copy(
+                displayLarge = baseTypography.displayLarge.copy(fontFamily = family),
+                displayMedium = baseTypography.displayMedium.copy(fontFamily = family),
+                displaySmall = baseTypography.displaySmall.copy(fontFamily = family),
+                headlineLarge = baseTypography.headlineLarge.copy(fontFamily = family),
+                headlineMedium = baseTypography.headlineMedium.copy(fontFamily = family),
+                headlineSmall = baseTypography.headlineSmall.copy(fontFamily = family),
+                titleLarge = baseTypography.titleLarge.copy(fontFamily = family),
+                titleMedium = baseTypography.titleMedium.copy(fontFamily = family),
+                titleSmall = baseTypography.titleSmall.copy(fontFamily = family),
+                bodyLarge = baseTypography.bodyLarge.copy(fontFamily = family),
+                bodyMedium = baseTypography.bodyMedium.copy(fontFamily = family),
+                bodySmall = baseTypography.bodySmall.copy(fontFamily = family),
+                labelLarge = baseTypography.labelLarge.copy(fontFamily = family),
+                labelMedium = baseTypography.labelMedium.copy(fontFamily = family),
+                labelSmall = baseTypography.labelSmall.copy(fontFamily = family),
+            )
+        }
     val ankiColors = remember(context, colorScheme) { context.toAnkiDroidColors(colorScheme) }
     CompositionLocalProvider(
         LocalDimensions provides Dimensions(),
         LocalAnkiDroidColors provides ankiColors,
     ) {
-        MaterialTheme(colorScheme = colorScheme, content = content)
+        MaterialTheme(colorScheme = colorScheme, typography = typography, content = content)
     }
 }
 
@@ -74,12 +105,20 @@ internal fun Context.toMaterial3ColorScheme(): ColorScheme {
             base.copy(
                 primary = color(R.styleable.ComposeTheme_colorPrimary, base.primary),
                 onPrimary = color(R.styleable.ComposeTheme_colorOnPrimary, base.onPrimary),
-                // primaryContainer / onPrimaryContainer are intentionally NOT read from
-                // the AnkiDroid XML themes. Those XML values were chosen for legacy
-                // Material Components purposes (switch thumb, old-style FAB icon tint)
-                // and conflict with Material3's semantic (a real container background
-                // for FABs and similar). Falling back to the Material3 base colorScheme
-                // gives the right behavior for Compose components.
+                // Legacy themes use these slots for switch thumbs and FAB icon tint.
+                // Catppuccin explicitly opts into Material3 container semantics.
+                primaryContainer =
+                    if (getBoolean(R.styleable.ComposeTheme_useThemePrimaryContainer, false)) {
+                        color(R.styleable.ComposeTheme_colorPrimaryContainer, base.primaryContainer)
+                    } else {
+                        base.primaryContainer
+                    },
+                onPrimaryContainer =
+                    if (getBoolean(R.styleable.ComposeTheme_useThemePrimaryContainer, false)) {
+                        color(R.styleable.ComposeTheme_colorOnPrimaryContainer, base.onPrimaryContainer)
+                    } else {
+                        base.onPrimaryContainer
+                    },
                 secondary = color(R.styleable.ComposeTheme_colorSecondary, base.secondary),
                 onSecondary = color(R.styleable.ComposeTheme_colorOnSecondary, base.onSecondary),
                 secondaryContainer = color(R.styleable.ComposeTheme_colorSecondaryContainer, base.secondaryContainer),

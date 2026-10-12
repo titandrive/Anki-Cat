@@ -18,4 +18,5 @@ enum class DayTheme(
     LIGHT(R.string.theme_light_value, R.style.Theme_Light),
     PLAIN(R.string.theme_plain_value, R.style.Theme_Light_Plain),
     EINK(R.string.theme_eink_scheme_value, R.style.Theme_Light_Eink),
+    CATPPUCCIN_LATTE(R.string.theme_catppuccin_latte_value, R.style.Theme_Catppuccin_Latte),
 }

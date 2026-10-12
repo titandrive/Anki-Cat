@@ -154,3 +154,25 @@ scale up, but not down.  */
 .night_mode .replay-button svg {
   fill: white;
 }
+
+/* Match the reviewer to the selected Catppuccin palette, including standard
+   card templates that set .card or .card.nightMode to white/black. */
+body.card.ankidroid_catppuccin_latte,
+body.card.ankidroid_catppuccin_latte input#typeans {
+  color: #4c4f69;
+  background-color: #eff1f5;
+}
+
+body.card.nightMode.ankidroid_catppuccin_macchiato,
+body.card.nightMode.ankidroid_catppuccin_macchiato input#typeans {
+  color: #cad3f5;
+  background-color: #24273a;
+}
+
+body.ankidroid_catppuccin_latte .replay-button svg {
+  fill: #4c4f69;
+}
+
+body.ankidroid_catppuccin_macchiato .replay-button svg {
+  fill: #cad3f5;
+}

@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="ComposeTheme">
         <attr name="isLightTheme" />
+        <attr name="useThemePrimaryContainer" />
         <attr name="colorPrimary" />
         <attr name="colorOnPrimary" />
         <attr name="colorPrimaryContainer" />
